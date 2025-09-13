@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Capy's Foods — Cardápio</title>
+    <meta name="description" content="Cardápio da Capy's Foods: comidas e bebidas para a Mostra Cultural." />
+    <link rel="icon" href="assets/img/Gemini_Generated_Image_1t5ygt1t5ygt1t5y.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="branding" href="#" aria-label="Capy's Foods">
+          <img src="assets/img/Gemini_Generated_Image_1t5ygt1t5ygt1t5y.png" alt="Capy's Foods" class="logo" />
+          <div class="brand-text">
+            <h1>Capy's Foods</h1>
+            <p>Comidas & Bebidas • Mostra Cultural</p>
+          </div>
+        </a>
+        <div class="header-actions">
+          <button id="themeToggle" class="btn btn-ghost" aria-label="Alternar tema">🌗</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h2>Bem-vindo(a) ao nosso cardápio!</h2>
+          <p>Escolha sua categoria ou use a busca abaixo.</p>
+          <div class="controls">
+            <div class="chips" id="categoryChips" aria-label="Categorias"></div>
+            <div class="search">
+              <input id="searchInput" type="search" placeholder="Buscar por item, ingrediente ou tag..." aria-label="Buscar" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-section">
+        <div class="container">
+          <div id="menuGrid" class="menu-grid" aria-live="polite"></div>
+          <div id="emptyState" class="empty-state hidden">
+            <img src="assets/img/Gemini_Generated_Image_1t5ygt1t5ygt1t5y.png" alt="Capybara" />
+            <p>Nenhum item encontrado. Tente limpar filtros ou buscar por outro termo.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Capy's Foods • Feito com carinho para a Mostra Cultural</p>
+        <img id="footerLogo" class="footer-logo" src="assets/img/Gemini_Generated_Image_1t5ygt1t5ygt1t5y.png" alt="Logo Capy's Foods" />
+      </div>
+    </footer>
+
+    <!-- Lightbox para ampliar o logo -->
+    <div id="logoLightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Logo ampliado">
+      <img id="lightboxImg" alt="Logo Capy's Foods ampliado" />
+    </div>
+
+    <script>
+      // Dados embutidos para funcionar sem servidor (file://)
+      window.MENU_DATA = {
+        items: [
+          // Comidas
+          {
+            id: "tacos",
+            name: "Tacos",
+            description: "Tortilhas recheadas, bem saborosas!",
+            price: 0,
+            category: "Comidas",
+            tags: ["salgado"],
+            emoji: "🌮"
+          },
+
+          // Doces
+          {
+            id: "cookie-leite",
+            name: "Cookie — Ao Leite",
+            description: "Cookie macio com gotas de chocolate ao leite",
+            price: 0,
+            category: "Doces",
+            tags: ["cookie", "chocolate"],
+            emoji: "🍪"
+          },
+          {
+            id: "cookie-meio-amargo",
+            name: "Cookie — Meio Amargo",
+            description: "Gotas de chocolate meio amargo",
+            price: 0,
+            category: "Doces",
+            tags: ["cookie", "chocolate"],
+            emoji: "🍪"
+          },
+          {
+            id: "cookie-mms",
+            name: "Cookie — M&M's",
+            description: "Cookie com confeitos coloridos",
+            price: 0,
+            category: "Doces",
+            tags: ["cookie", "confeitos"],
+            emoji: "🍪"
+          },
+          {
+            id: "brownie",
+            name: "Brownie",
+            description: "Chocolate intenso, bem molhadinho",
+            price: 0,
+            category: "Doces",
+            tags: ["chocolate"],
+            emoji: "🍫"
+          },
+
+          // Bebidas — Sucos
+          {
+            id: "suco-uva-delvalle",
+            name: "Suco de Uva Del Valle",
+            description: "Gelado",
+            price: 0,
+            category: "Bebidas",
+            tags: ["suco", "uva", "del valle"],
+            emoji: "🍇"
+          },
+          {
+            id: "suco-laranja-natural",
+            name: "Suco de Laranja Natural",
+            description: "Natural",
+            price: 0,
+            category: "Bebidas",
+            tags: ["suco", "laranja", "natural"],
+            emoji: "🍊"
+          },
+
+          // Bebidas — Refrigerantes
+          {
+            id: "refri-coca",
+            name: "Coca-Cola",
+            description: "Lata gelada",
+            price: 0,
+            category: "Bebidas",
+            tags: ["refrigerante"],
+            emoji: "🥤"
+          },
+          {
+            id: "refri-coca-zero",
+            name: "Coca-Cola Zero",
+            description: "Lata gelada",
+            price: 0,
+            category: "Bebidas",
+            tags: ["refrigerante", "zero"],
+            emoji: "🥤"
+          },
+          {
+            id: "refri-guarana",
+            name: "Guaraná Antarctica",
+            description: "Lata gelada",
+            price: 0,
+            category: "Bebidas",
+            tags: ["refrigerante"],
+            emoji: "🥤"
+          },
+          {
+            id: "refri-guarana-zero",
+            name: "Guaraná Antarctica Zero",
+            description: "Lata gelada",
+            price: 0,
+            category: "Bebidas",
+            tags: ["refrigerante", "zero"],
+            emoji: "🥤"
+          }
+        ]
+      };
+    </script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
